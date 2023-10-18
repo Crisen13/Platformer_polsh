@@ -55,15 +55,18 @@ public class PlayerMove : MonoBehaviour
             jump = true;
             playerActionssnd.PlayOneShot(Jump);
         }
-
-        if (horizontalMove > 0.2f || horizontalMove < -0.2f)
+        if (grounded == true)
         {
-            myAnim.SetBool("running", true);
+            if (horizontalMove > 0.2f || horizontalMove < -0.2f)
+            {
+                myAnim.SetBool("running", true);
+            }
+            else
+            {
+                myAnim.SetBool("running", false);
+            }
         }
-        else
-        {
-            myAnim.SetBool("running", false);
-        }
+       
 
     }
 
@@ -100,6 +103,7 @@ public class PlayerMove : MonoBehaviour
 
         if (hit.collider != null && hit.transform.tag == "Blocks")
         {
+            Debug.Log("stop");
             myAnim.SetBool("jumping", false);
             grounded = true;
         }
