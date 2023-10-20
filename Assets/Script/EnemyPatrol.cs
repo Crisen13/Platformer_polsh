@@ -5,49 +5,31 @@ using UnityEngine;
 public class EnemyPatrol : MonoBehaviour
 {
 
-    public GameObject PointA;
-    public GameObject PointB;
+    [SerializeField] float Speed;
+    [SerializeField] Transform PointA;
+    [SerializeField] Transform PointB;
+    [SerializeField] bool isArrive;
 
-    //private Animator  anima;
-
-    private Rigidbody2D rbd;
-
-    private Transform currentPoint;
-
-    public float speed;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        rbd = GetComponent<Rigidbody2D>();
-        //anima = GetComponent<Animator>();
-
-        currentPoint = PointB.transform;
-
-    }
-
-    // Update is called once per frame
+   
     void Update()
     {
-        Vector2 point = currentPoint.position - transform.position;
-
-        if (currentPoint == PointB.transform)
+        if (isArrive)
         {
-            rbd.velocity = new Vector2(speed, 0);
+            transform.position = Vector2.MoveTowards(transform.position, PointB.position, Speed * Time.deltaTime);
+
+            if (transform.position.x == PointB.position.x)
+            {
+                isArrive = !isArrive;
+            }
         }
         else
         {
-            rbd.velocity = new Vector2(-speed, 0);
-        }
+            transform.position = Vector2.MoveTowards(transform.position, PointA.position, Speed * Time.deltaTime);
 
-        if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PointB.transform)
-        {
-            currentPoint = PointA.transform;
-        }
-
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PointA.transform)
-        {
-            currentPoint = PointB.transform;
+            if (transform.position.x == PointA.position.x)
+            {
+                isArrive = !isArrive;
+            }
         }
     }
 }
