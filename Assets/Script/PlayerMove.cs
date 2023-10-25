@@ -147,7 +147,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void Life()
+    public void Life()
     {
         if (life == 3)
         {

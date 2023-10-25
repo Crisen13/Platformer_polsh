@@ -26,5 +26,31 @@ public class GameOver : MonoBehaviour
             dead = true;
             SceneManager.LoadScene("DIES", LoadSceneMode.Single);
         }
+
+        if (collision.gameObject.name == "physic collide1")
+        {
+            dead = true;
+            SceneManager.LoadScene("level_1", LoadSceneMode.Single);
+        }
+
+        if (collision.gameObject.name == "physic collide2")
+        {
+            dead = true;
+            SceneManager.LoadScene("level_2", LoadSceneMode.Single);
+        }
+
+        if (collision.gameObject.name == "physic collide3")
+        {
+            dead = true;
+            SceneManager.LoadScene("level_3", LoadSceneMode.Single);
+        }
+
+        if (collision.gameObject.name == "physic collide4")
+        {
+            dead = true;
+            SceneManager.LoadScene("level_4", LoadSceneMode.Single);
+        }
     }
+
+  
 }
