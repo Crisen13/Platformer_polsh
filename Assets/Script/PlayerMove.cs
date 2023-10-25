@@ -26,10 +26,11 @@ public class PlayerMove : MonoBehaviour
     private int life = 3;
     public bool isHurt = false;
 
-    public AudioSource playerActionssnd;
-    public AudioClip getHit;
-    //public AudioClip shoot;
-    public AudioClip Jump;
+    public static AudioSource playerActionssnd;
+    public static AudioClip getHit;
+    //public static AudioClip shoot;
+    public static AudioClip Jump;
+    public static AudioClip Walk;
 
     Animator myAnim;
 
@@ -39,6 +40,10 @@ public class PlayerMove : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
 
+        Jump = Resources.Load<AudioClip>("jump");
+        Walk = Resources.Load<AudioClip>("walk");
+        getHit = Resources.Load<AudioClip>("getHit");
+
         playerActionssnd = GetComponent<AudioSource>();
 
     }
@@ -47,13 +52,15 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxis("Horizontal");
-        //Debug.Log(horizontalMove);
+        Debug.Log(horizontalMove);
 
         if (Input.GetButtonDown("Jump") && grounded)
         {
             myAnim.SetBool("jumping", true);
             jump = true;
             playerActionssnd.PlayOneShot(Jump);
+
+            Debug.Log("Soundplay");
         }
         if (grounded == true)
         {
@@ -103,8 +110,13 @@ public class PlayerMove : MonoBehaviour
 
         if (hit.collider != null && hit.transform.tag == "Blocks")
         {
-            Debug.Log("stop");
-            myAnim.SetBool("jumping", false);
+            //Debug.Log("stop");
+
+            if (myBody.velocity.y < 0)
+            {
+                myAnim.SetBool("jumping", false);
+            }
+
             grounded = true;
         }
         else

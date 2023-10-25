@@ -414,9 +414,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   castDist: 5
-  jumpPower: 28
+  jumpPower: 30
   gravityScale: 3
-  gravityFall: 40
+  gravityFall: 5
   heart1: {fileID: 548689706}
   heart2: {fileID: 636603426}
   heart3: {fileID: 643743829}
@@ -463,8 +463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 273934236}
   bulletPrefab: {fileID: 9178156613647078551, guid: 332616ca096984cc3a4a1a1f174b4288, type: 3}
-  playerActionssnd: {fileID: 0}
-  shoot: {fileID: 8300000, guid: 4f14c6bd3f9464449b4c73cb1253ffff, type: 3}
 --- !u!82 &419054841
 AudioSource:
   m_ObjectHideFlags: 0
